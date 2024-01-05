@@ -39,7 +39,7 @@ const Register = (props) => {
   }
 
   return (
-    <Box>
+    <Box paddingTop="20vh">
       <Toaster />
       <Box component="form" sx={{ display: "flex", justifyContent: "center" }} onSubmit={signInHandleFunction}>
         <Stack justifyContent='center' width="50vw" spacing={5}>
