@@ -1,7 +1,9 @@
 const runValidaion = (formData) => {
   const errors = {}
-  if (formData.name.trim().length === 0) {
-    errors.name = "name should not be Empty."
+  if (formData.name) {
+    if (formData.name.trim().length === 0) {
+      errors.name = "name should not be Empty."
+    }
   }
 
   if (formData.email.trim().length === 0) {
