@@ -1,6 +1,9 @@
 import { Box, Stack, Typography, TextField, Button } from '@mui/material'
+import axios from 'axios'
 import { useState } from 'react'
-
+import runValidaion from './Validation'
+import _ from 'lodash'
+import toast, { Toaster } from 'react-hot-toast'
 
 const Register = (props) => {
   const [formData, setFormData] = useState({ name: "", email: "", password: "" })
@@ -10,12 +13,34 @@ const Register = (props) => {
 
   const fields = ["name", "email", "password"]
 
-  const signInHandleFunction = (e) => {
+  const signInHandleFunction = async (e) => {
     e.preventDefault()
+
+    //Validation
+    const formValidation = runValidaion(formData)
+    try {
+      if (_.isEmpty(formValidation)) {
+        const result = await axios.post(`http://localhost:3073/users/register`, formData)
+        toast.success(result.data.msg);
+        setFormData({ name: "", email: "", password: "" })
+        setFormError({})
+      } else {
+        setFormError(formValidation)
+      }
+    } catch (e) {
+      if (e.response.data.errors) {
+        e.response.data.errors.forEach((ele) => {
+          toast.error(ele.msg);
+        })
+      } else {
+        console.log(e);
+      }
+    }
   }
 
   return (
     <Box>
+      <Toaster />
       <Box component="form" sx={{ display: "flex", justifyContent: "center" }} onSubmit={signInHandleFunction}>
         <Stack justifyContent='center' width="50vw" spacing={5}>
           <Typography variant="h3">Register</Typography>
