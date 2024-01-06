@@ -41,7 +41,16 @@ const Register = (props) => {
   return (
     <Box paddingTop="20vh">
       <Toaster />
-      <Card component="form" sx={{ display: "flex", justifyContent: "center", width: "60vw", margin: "auto", padding: "2vw" }} onSubmit={signInHandleFunction}>
+      <Card component="form"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          width: "40vw",
+          margin: "auto",
+          padding: "3vw",
+          paddingBottom: "3vw",
+          borderRadius: "15px"
+        }} onSubmit={signInHandleFunction}>
         <Stack justifyContent='center' width="50vw" spacing={3}>
           <Typography variant="h3">Register</Typography>
           {fields.map((fld, i) => {
@@ -56,7 +65,6 @@ const Register = (props) => {
               helperText={formError[fld]}
               sx={{ backgroundColor: "white" }} />
           })}
-
           <Button type="submit" variant="contained">Register</Button>
         </Stack>
       </Card>

@@ -4,7 +4,7 @@ const NewsCard = (props) => {
   const { feed } = props
 
   return (
-    <Card sx={{ marginY: '3vh', padding: "1vw" }} elevation={3}>
+    <Card sx={{ marginY: '3vh', padding: "1.5vw", borderRadius: "15px" }} elevation={3}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {feed.category}
