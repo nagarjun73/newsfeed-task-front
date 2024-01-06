@@ -1,4 +1,4 @@
-import { Box, Stack, Typography, TextField, Button } from '@mui/material'
+import { Box, Stack, Typography, TextField, Button, Card } from '@mui/material'
 import axios from 'axios'
 import { useState } from 'react'
 import runValidaion from './Validations/Reg-validation'
@@ -41,10 +41,9 @@ const Register = (props) => {
   return (
     <Box paddingTop="20vh">
       <Toaster />
-      <Box component="form" sx={{ display: "flex", justifyContent: "center" }} onSubmit={signInHandleFunction}>
-        <Stack justifyContent='center' width="50vw" spacing={5}>
+      <Card component="form" sx={{ display: "flex", justifyContent: "center", width: "60vw", margin: "auto", padding: "2vw" }} onSubmit={signInHandleFunction}>
+        <Stack justifyContent='center' width="50vw" spacing={3}>
           <Typography variant="h3">Register</Typography>
-
           {fields.map((fld, i) => {
             return <TextField
               key={i}
@@ -60,7 +59,7 @@ const Register = (props) => {
 
           <Button type="submit" variant="contained">Register</Button>
         </Stack>
-      </Box>
+      </Card>
     </Box>
   )
 }

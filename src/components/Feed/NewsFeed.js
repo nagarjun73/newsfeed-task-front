@@ -34,7 +34,7 @@ const NewsFeed = (props) => {
 
   return (
     <Box paddingTop="10vh">
-      {userPresent ? <Box width="50vw" margin="auto">
+      {userPresent ? <Box sx={{ width: { xs: '90vw', md: "60vw" } }} margin="auto">
         <Dropdown option={option} optionUpdater={optionUpdater} />
         {feeds.map((feed) => {
           return <NewsCard key={feed._id} feed={feed} />

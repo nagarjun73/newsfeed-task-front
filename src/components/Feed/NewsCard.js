@@ -4,7 +4,7 @@ const NewsCard = (props) => {
   const { feed } = props
 
   return (
-    <Card sx={{ marginY: '3vh' }}>
+    <Card sx={{ marginY: '3vh', padding: "1vw" }} elevation={3}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {feed.category}
@@ -13,7 +13,7 @@ const NewsCard = (props) => {
           {feed.title}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {new Date(feed.pubDate).toString()}
+          {new Date(feed.pubDate).toLocaleString()}
         </Typography>
         <Typography variant="body2">
           {feed.description}

@@ -1,4 +1,4 @@
-import { Box, Stack, Typography, TextField, Button } from '@mui/material'
+import { Box, Stack, Typography, TextField, Button, Card } from '@mui/material'
 import { useState } from 'react'
 import _ from 'lodash'
 import axios from 'axios'
@@ -34,6 +34,7 @@ const Login = (props) => {
           }
         })
         userDispatch({ type: "USER_LOGIN", payload: getAccount.data })
+        setFormError({})
         navigate('/')
       } else {
         setFormError(formValidation)
@@ -52,8 +53,15 @@ const Login = (props) => {
   return (
     <Box paddingTop="20vh" >
       <Toaster />
-      <Box component="form" sx={{ display: "flex", justifyContent: "center" }} onSubmit={loginHandleFunction}>
-        <Stack justifyContent='center' width="50vw" spacing={5}>
+      <Card component="form"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          margin: "auto",
+          padding: "3vw",
+          width: '60vw'
+        }} onSubmit={loginHandleFunction}>
+        <Stack justifyContent='center' width="50vw" spacing={3}>
           <Typography variant="h3">Login</Typography>
 
           {fields.map((filed, i) => {
@@ -71,7 +79,7 @@ const Login = (props) => {
 
           <Button type="submit" variant="contained">Login</Button>
         </Stack>
-      </Box>
+      </Card>
     </Box>
   )
 }
