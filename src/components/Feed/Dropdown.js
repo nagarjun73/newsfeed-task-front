@@ -7,7 +7,7 @@ const Dropdown = (props) => {
   const options = ["recentStories", "topStories", "india", "world", "nri", "business", "sports"]
 
   return (
-    <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
+    <FormControl variant="filled" sx={{ m: 1, minWidth: 140 }}>
       <InputLabel id="select-filled-label">categories</InputLabel>
       <Select
         labelId="select-filled-label"

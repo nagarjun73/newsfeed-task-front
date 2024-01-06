@@ -59,7 +59,8 @@ const Login = (props) => {
           justifyContent: "center",
           margin: "auto",
           padding: "3vw",
-          width: '60vw'
+          width: '40vw',
+          borderRadius: "15px"
         }} onSubmit={loginHandleFunction}>
         <Stack justifyContent='center' width="50vw" spacing={3}>
           <Typography variant="h3">Login</Typography>
