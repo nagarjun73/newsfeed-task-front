@@ -1,17 +1,19 @@
-import { Box, Stack, Typography, TextField, Button } from '@mui/material'
+import { Box, Stack, Typography, TextField, Button, Card } from '@mui/material'
 import { useState } from 'react'
 import _ from 'lodash'
-import runValidaion from './Validation'
-import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios'
+import runValidaion from './Validations/Login-validation'
+import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { UserContext } from '../../App'
 
 const Login = (props) => {
   const [formData, setFormData] = useState({ email: "", password: "" })
   const [formError, setFormError] = useState({})
+  const { userDispatch } = useContext(UserContext)
 
   const navigate = useNavigate()
-  console.log(formError);
 
   const fields = ['email', 'password']
 
@@ -24,6 +26,15 @@ const Login = (props) => {
       if (_.isEmpty(formValidation)) {
         const result = await axios.post('http://localhost:3073/users/login', formData)
         localStorage.setItem('token', result.data.token)
+
+        //get user details
+        const getAccount = await axios.get('http://localhost:3073/users/account', {
+          headers: {
+            Authorization: localStorage.getItem('token')
+          }
+        })
+        userDispatch({ type: "USER_LOGIN", payload: getAccount.data })
+        setFormError({})
         navigate('/')
       } else {
         setFormError(formValidation)
@@ -42,8 +53,15 @@ const Login = (props) => {
   return (
     <Box paddingTop="20vh" >
       <Toaster />
-      <Box component="form" sx={{ display: "flex", justifyContent: "center" }} onSubmit={loginHandleFunction}>
-        <Stack justifyContent='center' width="50vw" spacing={5}>
+      <Card component="form"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          margin: "auto",
+          padding: "3vw",
+          width: '60vw'
+        }} onSubmit={loginHandleFunction}>
+        <Stack justifyContent='center' width="50vw" spacing={3}>
           <Typography variant="h3">Login</Typography>
 
           {fields.map((filed, i) => {
@@ -61,7 +79,7 @@ const Login = (props) => {
 
           <Button type="submit" variant="contained">Login</Button>
         </Stack>
-      </Box>
+      </Card>
     </Box>
   )
 }
