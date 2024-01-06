@@ -4,7 +4,7 @@ import { FormControl, InputLabel, Select, MenuItem } from '@mui/material'
 const Dropdown = (props) => {
   const { option, optionUpdater } = props
 
-  const options = ["recentStories", "topStories", "india", "world", "nri", "business", "cricket", "sports"]
+  const options = ["recentStories", "topStories", "india", "world", "nri", "business", "sports"]
 
   return (
     <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>

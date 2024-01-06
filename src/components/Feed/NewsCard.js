@@ -4,7 +4,7 @@ const NewsCard = (props) => {
   const { feed } = props
 
   return (
-    <Card>
+    <Card sx={{ marginY: '3vh' }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           {feed.category}
@@ -22,7 +22,7 @@ const NewsCard = (props) => {
       </CardContent>
       <CardActions>
         <Button variant="contained" size="small">
-          <Link sx={{ color: "white", textDecoration: "none" }} href={feed.link}>Details</Link>
+          <Link target="_blank" rel="noopener" sx={{ color: "white", textDecoration: "none" }} href={feed.link}>Details</Link>
         </Button>
       </CardActions>
     </Card>
