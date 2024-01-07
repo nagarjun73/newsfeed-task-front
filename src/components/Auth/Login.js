@@ -2,7 +2,7 @@
 import { Box, Stack, Typography, TextField, Button, Card } from '@mui/material'
 import { useState } from 'react'
 import _ from 'lodash'
-import axios from 'axios'
+import axios from '../../config/axiosConfig'
 import { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
@@ -10,7 +10,7 @@ import { useContext } from 'react'
 //helpers
 import { UserContext } from '../../App'
 import runValidaion from './Validations/Login-validation'
-import cardCompCss from './CSS/LoginCSS';
+import cardCompCss from './styles/LoginStyles';
 import getUserData from '../../helpers/getUserData';
 import clientErrorHandler from './helpers/errorHandleFunc';
 
@@ -27,7 +27,7 @@ const Login = (props) => {
     const formValidation = runValidaion(formData)
     try {
       if (_.isEmpty(formValidation)) {
-        const result = await axios.post('http://localhost:3073/users/login', formData)
+        const result = await axios.post('users/login', formData)
         localStorage.setItem('token', result.data.token)
         //get user details
         getUserData(userDispatch)

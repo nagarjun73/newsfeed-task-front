@@ -1,12 +1,12 @@
 //packages
 import { Box, Stack, Typography, TextField, Button, Card } from '@mui/material'
-import axios from 'axios'
+import axios from '../../config/axiosConfig'
 import { useState } from 'react'
 import _ from 'lodash'
 import toast, { Toaster } from 'react-hot-toast'
 
 //helpers
-import cardCompCss from './CSS/RegisterCSS'
+import cardCompCss from './styles/RegisterStyles'
 import runValidaion from './Validations/Reg-validation'
 import clientErrorHandler from './helpers/errorHandleFunc'
 
@@ -14,7 +14,6 @@ const Register = (props) => {
   const [formData, setFormData] = useState({ name: "", email: "", password: "" })
   const [formError, setFormError] = useState({})
   const fields = ["name", "email", "password"]
-  console.log(formData);
 
   //Signup form Submission handler
   const signInHandleFunction = async (e) => {
@@ -25,7 +24,7 @@ const Register = (props) => {
     try {
       //if no errors
       if (_.isEmpty(formValidation)) {
-        const result = await axios.post(`http://localhost:3073/users/register`, formData)
+        const result = await axios.post(`users/register`, formData)
         toast.success(result.data.msg);
         //reset form
         setFormData({ name: "", email: "", password: "" })

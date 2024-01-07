@@ -1,6 +1,6 @@
-import { Box, Typography } from "@mui/material"
+import { Box } from "@mui/material"
 import { useEffect, useState } from "react"
-import axios from "axios"
+import axios from '../../config/axiosConfig'
 import NewsCard from "./NewsCard"
 import Dropdown from "./Dropdown"
 import { useContext } from 'react'
@@ -17,7 +17,7 @@ const NewsFeed = (props) => {
   useEffect(() => {
     if (localStorage.getItem('token')) {
       (async () => {
-        const getFeed = await axios.get(`http://localhost:3073/feeds/${option}`, {
+        const getFeed = await axios.get(`feeds/${option}`, {
           headers: {
             Authorization: localStorage.getItem('token')
           }
@@ -36,7 +36,9 @@ const NewsFeed = (props) => {
   return (
     <Box paddingTop="10vh">
       {userPresent && <Box sx={{ width: { xs: '90vw', md: "60vw" } }} margin="auto">
+        {/* drop down */}
         <Dropdown option={option} optionUpdater={optionUpdater} />
+        {/* cards */}
         {feeds.map((feed) => {
           return <NewsCard key={feed._id} feed={feed} />
         })}
