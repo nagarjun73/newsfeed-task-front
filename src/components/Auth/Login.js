@@ -1,13 +1,18 @@
+//packages
 import { Box, Stack, Typography, TextField, Button, Card } from '@mui/material'
 import { useState } from 'react'
 import _ from 'lodash'
 import axios from 'axios'
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
+
+//helpers
 import { UserContext } from '../../App'
 import runValidaion from './Validations/Login-validation'
 import cardCompCss from './CSS/LoginCSS';
+import getUserData from '../../helpers/getUserData';
+import clientErrorHandler from './helpers/errorHandleFunc';
 
 const Login = (props) => {
   const [formData, setFormData] = useState({ email: "", password: "" })
@@ -25,26 +30,17 @@ const Login = (props) => {
         const result = await axios.post('http://localhost:3073/users/login', formData)
         localStorage.setItem('token', result.data.token)
         //get user details
-        const getAccount = await axios.get('http://localhost:3073/users/account', {
-          headers: {
-            Authorization: localStorage.getItem('token')
-          }
-        })
-        userDispatch({ type: "USER_LOGIN", payload: getAccount.data })
+        getUserData(userDispatch)
+        //resetting
         setFormData({ email: "", password: "" })
         setFormError({})
+        //navigating to news feed
         navigate('/')
       } else {
         setFormError(formValidation)
       }
     } catch (e) {
-      if (e.response.data.errors) {
-        e.response.data.errors.forEach((ele) => {
-          toast.error(ele.msg);
-        })
-      } else {
-        console.log(e);
-      }
+      clientErrorHandler(e)
     }
   }
 

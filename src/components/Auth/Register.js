@@ -1,41 +1,41 @@
+//packages
 import { Box, Stack, Typography, TextField, Button, Card } from '@mui/material'
 import axios from 'axios'
 import { useState } from 'react'
-import runValidaion from './Validations/Reg-validation'
 import _ from 'lodash'
 import toast, { Toaster } from 'react-hot-toast'
+
+//helpers
 import cardCompCss from './CSS/RegisterCSS'
+import runValidaion from './Validations/Reg-validation'
+import clientErrorHandler from './helpers/errorHandleFunc'
 
 const Register = (props) => {
   const [formData, setFormData] = useState({ name: "", email: "", password: "" })
   const [formError, setFormError] = useState({})
-
+  const fields = ["name", "email", "password"]
   console.log(formData);
 
-  const fields = ["name", "email", "password"]
-
+  //Signup form Submission handler
   const signInHandleFunction = async (e) => {
     e.preventDefault()
 
     //Validation
     const formValidation = runValidaion(formData)
     try {
+      //if no errors
       if (_.isEmpty(formValidation)) {
         const result = await axios.post(`http://localhost:3073/users/register`, formData)
         toast.success(result.data.msg);
+        //reset form
         setFormData({ name: "", email: "", password: "" })
         setFormError({})
       } else {
+        //if errors
         setFormError(formValidation)
       }
     } catch (e) {
-      if (e.response.data.errors) {
-        e.response.data.errors.forEach((ele) => {
-          toast.error(ele.msg);
-        })
-      } else {
-        console.log(e);
-      }
+      clientErrorHandler(e)
     }
   }
 
@@ -46,6 +46,7 @@ const Register = (props) => {
         sx={cardCompCss} onSubmit={signInHandleFunction}>
         <Stack justifyContent='center' width="50vw" spacing={3}>
           <Typography variant="h3">Register</Typography>
+
           {fields.map((fld, i) => {
             return <TextField
               key={i}
@@ -58,6 +59,7 @@ const Register = (props) => {
               helperText={formError[fld]}
               sx={{ backgroundColor: "white" }} />
           })}
+
           <Button type="submit" variant="contained">Register</Button>
         </Stack>
       </Card>
