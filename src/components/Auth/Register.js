@@ -4,6 +4,7 @@ import { useState } from 'react'
 import runValidaion from './Validations/Reg-validation'
 import _ from 'lodash'
 import toast, { Toaster } from 'react-hot-toast'
+import cardCompCss from './CSS/RegisterCSS'
 
 const Register = (props) => {
   const [formData, setFormData] = useState({ name: "", email: "", password: "" })
@@ -42,15 +43,7 @@ const Register = (props) => {
     <Box paddingTop="20vh">
       <Toaster />
       <Card component="form"
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          width: "40vw",
-          margin: "auto",
-          padding: "3vw",
-          paddingBottom: "3vw",
-          borderRadius: "15px"
-        }} onSubmit={signInHandleFunction}>
+        sx={cardCompCss} onSubmit={signInHandleFunction}>
         <Stack justifyContent='center' width="50vw" spacing={3}>
           <Typography variant="h3">Register</Typography>
           {fields.map((fld, i) => {

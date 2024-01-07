@@ -2,12 +2,12 @@ import { Box, Stack, Typography, TextField, Button, Card } from '@mui/material'
 import { useState } from 'react'
 import _ from 'lodash'
 import axios from 'axios'
-import runValidaion from './Validations/Login-validation'
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { UserContext } from '../../App'
-
+import runValidaion from './Validations/Login-validation'
+import cardCompCss from './CSS/LoginCSS';
 
 const Login = (props) => {
   const [formData, setFormData] = useState({ email: "", password: "" })
@@ -15,6 +15,7 @@ const Login = (props) => {
   const { userDispatch } = useContext(UserContext)
   const navigate = useNavigate()
   const fields = ['email', 'password']
+
   const loginHandleFunction = async (e) => {
     e.preventDefault()
     //Validation
@@ -30,6 +31,7 @@ const Login = (props) => {
           }
         })
         userDispatch({ type: "USER_LOGIN", payload: getAccount.data })
+        setFormData({ email: "", password: "" })
         setFormError({})
         navigate('/')
       } else {
@@ -45,18 +47,12 @@ const Login = (props) => {
       }
     }
   }
+
   return (
     <Box paddingTop="20vh" >
       <Toaster />
       <Card component="form"
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          margin: "auto",
-          padding: "3vw",
-          width: '60vw',
-          borderRadius: "15px"
-        }} onSubmit={loginHandleFunction}>
+        sx={cardCompCss} onSubmit={loginHandleFunction}>
         <Stack justifyContent='center' width="50vw" spacing={3}>
           <Typography variant="h3">Login</Typography>
           {fields.map((filed, i) => {
