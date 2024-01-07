@@ -1,7 +1,7 @@
 import { Box, Stack, Typography, TextField, Button, Card } from '@mui/material'
 import axios from 'axios'
 import { useState } from 'react'
-import runValidaion from './Validation'
+import runValidaion from './Validations/Reg-validation'
 import _ from 'lodash'
 import toast, { Toaster } from 'react-hot-toast'
 
