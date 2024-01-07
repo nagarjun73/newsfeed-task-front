@@ -58,7 +58,7 @@ const Register = (props) => {
               key={i}
               label={fld}
               variant="outlined"
-              type='text'
+              type={fld === 'password' ? 'password' : 'text'}
               value={formData[fld]}
               onChange={(e) => setFormData({ ...formData, [fld]: e.target.value })}
               error={formError[fld] && true}

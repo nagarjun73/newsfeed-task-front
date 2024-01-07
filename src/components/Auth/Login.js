@@ -64,7 +64,7 @@ const Login = (props) => {
               label={filed}
               key={i}
               variant="outlined"
-              type='text'
+              type={filed === 'password' ? 'password' : 'text'}
               value={formData[filed]}
               onChange={(e) => setFormData({ ...formData, [filed]: e.target.value })}
               error={formError[filed] && true}
