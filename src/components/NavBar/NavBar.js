@@ -1,16 +1,10 @@
 import { AppBar, Toolbar, Typography, Box, Button } from "@mui/material"
 import { Link } from 'react-router-dom'
-import { useContext } from "react"
-import { UserContext } from "../../App"
 
 const NavBar = (props) => {
-  const { userState, userDispatch } = useContext(UserContext)
-  const userPresent = Object.keys(userState.currentUser).length !== 0
 
   const logoutButtonHandle = () => {
-    userDispatch({ type: "LOGOUT" })
-    localStorage.removeItem('token')
-    localStorage.removeItem('selectedOption')
+
   }
 
   return (
@@ -23,7 +17,7 @@ const NavBar = (props) => {
         >
           NEWS FEED
         </Typography>
-        {userPresent
+        {localStorage.getItem('token')
           ?
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             <Button sx={{ color: '#fff' }}>

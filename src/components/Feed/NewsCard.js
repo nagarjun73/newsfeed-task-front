@@ -13,7 +13,7 @@ const NewsCard = (props) => {
           {feed.title}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          {new Date(feed.pubDate).toLocaleString()}
+          {new Date(feed.pubDate).toString()}
         </Typography>
         <Typography variant="body2">
           {feed.description}

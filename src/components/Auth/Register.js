@@ -1,7 +1,7 @@
-import { Box, Stack, Typography, TextField, Button, Card } from '@mui/material'
+import { Box, Stack, Typography, TextField, Button } from '@mui/material'
 import axios from 'axios'
 import { useState } from 'react'
-import runValidaion from './Validations/Reg-validation'
+import runValidaion from './Validation'
 import _ from 'lodash'
 import toast, { Toaster } from 'react-hot-toast'
 
@@ -52,23 +52,27 @@ const Register = (props) => {
           borderRadius: "15px"
         }} onSubmit={signInHandleFunction}>
         <Stack justifyContent='center' width="50vw" spacing={3}>
-          <Typography variant="h3">Register</Typography>
-          {fields.map((fld, i) => {
-            return <TextField
-              key={i}
-              label={fld}
-              variant="outlined"
-              type='text'
-              value={formData[fld]}
-              onChange={(e) => setFormData({ ...formData, [fld]: e.target.value })}
-              error={formError[fld] && true}
-              helperText={formError[fld]}
-              sx={{ backgroundColor: "white" }} />
-          })}
-          <Button type="submit" variant="contained">Register</Button>
-        </Stack>
-      </Card>
-    </Box>
+          <Box component="form" sx={{ display: "flex", justifyContent: "center" }} onSubmit={signInHandleFunction}>
+            <Stack justifyContent='center' width="50vw" spacing={5}>
+              <Typography variant="h3">Register</Typography>
+
+              {fields.map((fld, i) => {
+                return <TextField
+                  key={i}
+                  label={fld}
+                  variant="outlined"
+                  type='text'
+                  value={formData[fld]}
+                  onChange={(e) => setFormData({ ...formData, [fld]: e.target.value })}
+                  error={formError[fld] && true}
+                  helperText={formError[fld]}
+                  sx={{ backgroundColor: "white" }} />
+              })}
+              <Button type="submit" variant="contained">Register</Button>
+            </Stack>
+          </Card>
+        </Box>
+    </Box >
   )
 }
 
