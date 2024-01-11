@@ -1,10 +1,10 @@
-
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material'
+import { useContext } from 'react'
+import { CategoryContext } from '../../App'
 
 const Dropdown = (props) => {
   const { option, optionUpdater } = props
-
-  const options = ["recentStories", "topStories", "india", "world", "nri", "business", "sports"]
+  const { categoryState } = useContext(CategoryContext)
 
   return (
     <FormControl variant="filled" sx={{ m: 1, minWidth: 140 }}>
@@ -15,8 +15,8 @@ const Dropdown = (props) => {
         value={option}
         onChange={(e) => optionUpdater(e.target.value)}
       >
-        {options.map((ele, i) => {
-          return <MenuItem key={i} value={ele}>{ele}</MenuItem>
+        {categoryState.categories.map((ele, i) => {
+          return <MenuItem key={i} value={ele._id}>{ele.name}</MenuItem>
         })}
       </Select>
     </FormControl>
