@@ -6,9 +6,6 @@ const NewsCard = (props) => {
   return (
     <Card sx={{ marginY: '3vh', padding: "1.5vw", borderRadius: "15px" }} elevation={3}>
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          {feed.category}
-        </Typography>
         <Typography variant="h5" component="div">
           {feed.title}
         </Typography>

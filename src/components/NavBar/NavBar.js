@@ -18,6 +18,12 @@ const NavBar = (props) => {
         {userPresent
           ? //logged in
           <Box sx={boxCss}>
+            <Button sx={{ color: '#fff' }}>
+              <Link style={linkCss} to='/'>NewsFeed</Link>
+            </Button>
+            <Button sx={{ color: '#fff' }}>
+              <Link style={linkCss} to='/category'>Category</Link>
+            </Button>
             <Button onClick={() => logoutButtonHandle(userDispatch)} sx={{ color: '#fff' }}>
               <Link style={linkCss} to='/login'>Logout</Link>
             </Button>

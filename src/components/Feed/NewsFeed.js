@@ -6,9 +6,10 @@ import Dropdown from "./Dropdown"
 import { useContext } from 'react'
 import { UserContext } from '../../App'
 
+
 const NewsFeed = (props) => {
   const iniOpt = localStorage.getItem('selectedOption')
-  const [option, setOption] = useState(iniOpt ? iniOpt : 'recentStories')
+  const [option, setOption] = useState(iniOpt ? iniOpt : '659ead71964ee28a078e1f36')
   const [feeds, setFeeds] = useState([])
   const { userState } = useContext(UserContext)
   const userPresent = Object.keys(userState.currentUser).length !== 0
