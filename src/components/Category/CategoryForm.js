@@ -55,6 +55,7 @@ const CategoryForm = (props) => {
         }
         //reset form
         setFormError({})
+        setFormData({ name: "", url: "" })
         setOpen(false)
       } else {
         setFormError(errors)
@@ -77,7 +78,7 @@ const CategoryForm = (props) => {
   const handleClose = () => {
     setOpen(false)
     if (button == "add") {
-      // emptyFormData()
+      setFormData({ name: "", url: "" })
     }
   }
 
@@ -117,7 +118,6 @@ const CategoryForm = (props) => {
                 error={formError.url && true}
                 helperText={formError.url}
                 sx={{ backgroundColor: "white" }} />
-
 
               <Button type="submit" variant="contained">submit</Button>
             </Stack>

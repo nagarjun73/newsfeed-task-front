@@ -9,15 +9,18 @@ import { useContext } from 'react'
 
 //helpers
 import { UserContext } from '../../App'
+import { CategoryContext } from '../../App';
 import runValidaion from './Validations/Login-validation'
 import cardCompCss from './styles/LoginStyles';
 import getUserData from '../../helpers/getUserData';
+import getCategoryData from '../../helpers/getCategoryData'
 import clientErrorHandler from './helpers/errorHandleFunc';
 
 const Login = (props) => {
   const [formData, setFormData] = useState({ email: "", password: "" })
   const [formError, setFormError] = useState({})
   const { userDispatch } = useContext(UserContext)
+  const { categoryDispatch } = useContext(CategoryContext)
   const navigate = useNavigate()
   const fields = ['email', 'password']
 
@@ -31,6 +34,7 @@ const Login = (props) => {
         localStorage.setItem('token', result.data.token)
         //get user details
         getUserData(userDispatch)
+        getCategoryData(categoryDispatch)
         //resetting
         setFormData({ email: "", password: "" })
         setFormError({})

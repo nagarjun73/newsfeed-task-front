@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { CategoryContext } from "../../App"
 import CategoryList from "./CategoryList"
-import { Box, Button, Stack } from "@mui/material"
+import { Box, Stack } from "@mui/material"
 import CategoryForm from "./CategoryForm"
 
 const CategoryContainer = () => {
@@ -9,6 +9,7 @@ const CategoryContainer = () => {
 
   return (
     <Box paddingTop="10vh">
+      {/* Add Category comp */}
       <CategoryForm category={{}} button="add" />
       <Stack gap={1}>
         {categoryState.categories.map((cat) => {

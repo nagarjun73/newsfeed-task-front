@@ -33,6 +33,7 @@ const CategoryList = (props) => {
           </Typography>
         </CardContent>
         <CardActions>
+          {/* edit category comp */}
           <CategoryForm category={category} button="edit" />
           <Button variant="contained" onClick={handleDeleteCategory}>
             delete
